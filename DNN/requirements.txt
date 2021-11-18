@@ -1,0 +1,23 @@
+# Basics 
+jupyter
+ipython
+ipykernel
+
+
+# Data Manipulation
+matplotlib
+numpy
+pandas
+openpyxl
+
+# Machine Learning
+sklearn
+tensorflow
+tensorflow-gpu
+pyyaml
+h5py
+
+# Model Helpers
+knockknock
+termcolor
+tqdm
