@@ -9,7 +9,7 @@ if [[ $# -eq 0 ]]; then
   echo -e "Submitting Spark Job...\n"
   ${SPARK_HOME}/bin/spark-submit \
     --class Application \
-    --master spark://char:30633 \
+    --master spark://lattice-100:8079 \
     --deploy-mode cluster \
     --driver-memory 4g \
     --executor-memory 2g \
