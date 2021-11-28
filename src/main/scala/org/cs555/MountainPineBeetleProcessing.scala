@@ -11,7 +11,7 @@ class MountainPineBeetleProcessing(sparkSession: SparkSession) {
     val readConfig: ReadConfig = ReadConfig(Map("collection" -> "mpb_cypress_hill_sk_100m"), Some(ReadConfig(sparkSession)))
     val mpbDf: DataFrame = MongoSpark.load(sparkSession, readConfig)
 
-    val mpbPerYearDf: DataFrame = mpbDf.groupBy("YEAR").sum("MPB")
+    val mpbPerYearDf: DataFrame = mpbDf.groupBy("YEAR").sum("MPB").sort("YEAR")
 
     mpbPerYearDf.show(10)
   }
