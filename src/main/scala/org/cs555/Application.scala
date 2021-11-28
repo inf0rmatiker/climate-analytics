@@ -1,4 +1,7 @@
-import mongo.SparkConnector
+package org.cs555
+
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.{SparkConf, SparkContext}
 
 object Application {
 
@@ -18,14 +21,13 @@ object Application {
   }
 
   def main(args: Array[String]): Unit = {
-    println("GOT HEEEEEEEEREREREREE")
-    printArgs(args)
-//    if(args.length != 2) {
-//      printUsage()
-//      System.exit(1)
-//    }
+    val spark = SparkSession.builder
+      .appName("Simple Application")
+      .master("spark://char:30633")
+      .getOrCreate()
 
-    val sparkConnector: SparkConnector = new SparkConnector()
-    sparkConnector.loadDataset()
+    println("GOT HERE SUCCESSFULLY")
+
+    spark.close()
   }
 }

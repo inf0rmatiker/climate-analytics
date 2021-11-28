@@ -1,4 +1,4 @@
-package mongo
+package org.cs555.mongo
 
 import com.mongodb.spark._
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
