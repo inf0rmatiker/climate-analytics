@@ -2,12 +2,12 @@ name := "climate-analytics"
 
 version := "0.1"
 
-scalaVersion := "2.12.10"
+scalaVersion := "2.12.12"
 
 // set the main class for 'sbt run'
 Compile / run / mainClass := Some("Application")
 
-val sparkVersion = "3.1.2"
+val sparkVersion = "3.0.1"
 val mongoSparkConnectorVersion = "3.0.1"
 
 libraryDependencies ++= Seq(
