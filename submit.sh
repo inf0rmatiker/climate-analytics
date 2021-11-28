@@ -1,15 +1,15 @@
 #!/bin/bash
 
 function print_usage {
-  echo -e "USAGE\n\trun.sh <spark_master>"
-  echo -e "\nEXAMPLE\n\trun.sh spark://char:30633"
+  echo -e "USAGE\n\tsubmit.sh" 
+  echo -e "\nEXAMPLE\n\tsubmit.sh"
 }
 
-if [[ $# -eq 1 ]]; then
+if [[ $# -eq 0 ]]; then
   echo -e "Submitting Spark Job...\n"
-  "${SPARK_HOME}"/bin/spark-submit \
+  ${SPARK_HOME}/bin/spark-submit \
     --class Application \
-    --master "$1" \
+    --master spark://char:30633 \
     --deploy-mode cluster \
     --driver-memory 4g \
     --executor-memory 2g \
