@@ -18,6 +18,7 @@ object Application {
   }
 
   def main(args: Array[String]): Unit = {
+    println("GOT HEEEEEEEEREREREREE")
     printArgs(args)
 //    if(args.length != 2) {
 //      printUsage()
