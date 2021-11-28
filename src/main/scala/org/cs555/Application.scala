@@ -23,7 +23,7 @@ object Application {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder
       .appName("Simple Application")
-      .master("spark://lattice-100:8079")
+      .master("local[8]")
       .config("spark.mongodb.input.uri", "mongodb://lattice-100:27018/sustaindb.climate_cypress_hill_sk")
       .getOrCreate()
 
