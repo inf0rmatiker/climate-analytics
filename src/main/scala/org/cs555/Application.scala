@@ -1,6 +1,7 @@
 package org.cs555
 
 import com.mongodb.spark.MongoSpark
+import com.mongodb.spark._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Application {
