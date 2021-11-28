@@ -1,3 +1,4 @@
+import com.mongodb.spark.MongoSpark
 import org.apache.spark.sql.SparkSession
 
 object Application {
@@ -21,9 +22,14 @@ object Application {
     val spark = SparkSession.builder
       .appName("Simple Application")
       .master("spark://char:30633")
+      .config("spark.mongodb.input.uri", "mongodb://lattice-100:27018/sustaindb.climate_cypress_hill_sk")
       .getOrCreate()
 
     println("GOT HERE SUCCESSFULLY")
+
+    val rdd = MongoSpark.load(spark)
+    println(rdd.count)
+    println(rdd.first.toJson)
 
     spark.close()
   }
