@@ -1,5 +1,5 @@
 import com.mongodb.spark.MongoSpark
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Application {
 
@@ -27,9 +27,9 @@ object Application {
 
     println("GOT HERE SUCCESSFULLY")
 
-    val rdd = MongoSpark.load(spark)
-    println(rdd.count)
-    println(rdd.first.toJson)
+    val df: DataFrame = MongoSpark.load(spark)
+    println(df.count)
+    println(df.first().json)
 
     spark.close()
   }
