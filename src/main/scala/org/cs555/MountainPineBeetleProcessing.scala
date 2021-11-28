@@ -13,6 +13,6 @@ class MountainPineBeetleProcessing(sparkSession: SparkSession) {
 
     val mpbPerYearDf: DataFrame = mpbDf.groupBy("YEAR").sum("MPB").sort("YEAR")
 
-    mpbPerYearDf.show(10)
+    mpbPerYearDf.show(13)
   }
 }
