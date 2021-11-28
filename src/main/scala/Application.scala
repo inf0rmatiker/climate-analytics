@@ -1,3 +1,5 @@
+import mongo.SparkConnector
+
 object Application {
 
   def printArgs(args: Array[String]): Unit = {
@@ -17,9 +19,12 @@ object Application {
 
   def main(args: Array[String]): Unit = {
     printArgs(args)
-    if(args.length != 2) {
-      printUsage()
-      System.exit(1)
-    }
+//    if(args.length != 2) {
+//      printUsage()
+//      System.exit(1)
+//    }
+
+    val sparkConnector: SparkConnector = new SparkConnector()
+    sparkConnector.loadDataset()
   }
 }
