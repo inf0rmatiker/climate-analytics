@@ -5,7 +5,7 @@ version := "0.1"
 scalaVersion := "2.12.10"
 
 // set the main class for 'sbt run'
-Compile / run / mainClass := Some("org.cs555.Application")
+Compile / run / mainClass := Some("Application")
 
 val sparkVersion = "3.1.2"
 val mongoSparkConnectorVersion = "3.0.1"
