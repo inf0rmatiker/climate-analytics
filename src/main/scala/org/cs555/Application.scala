@@ -34,9 +34,9 @@ object Application {
     val mpbProcessing: MountainPineBeetleProcessing = new MountainPineBeetleProcessing(sparkSession)
     val noaaProcessing: NoaaProcessing = new NoaaProcessing(sparkSession)
 
-    // climateProcessing.processClimateData()
-    // mpbProcessing.processMpbData()
-    noaaProcessing.processNoaaData()
+    climateProcessing.processClimateData()
+    mpbProcessing.processMpbData()
+    // noaaProcessing.processNoaaData()
 
     sparkSession.close()
   }

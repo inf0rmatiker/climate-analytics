@@ -6,7 +6,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 class NoaaProcessing(sparkSession: SparkSession) {
   def processNoaaData(): Unit = {
-    processNoaaData("G0800510")
+    processNoaaData("G0800430")
   }
 
   def processNoaaData(gisJoin: String): Unit = {
@@ -43,7 +43,7 @@ class NoaaProcessing(sparkSession: SparkSession) {
       new DataFrameSaver("hdfs://lattice-126:30000/user/menukaw/cs555")
 
     println(s"Writing output: $gisJoin")
-    saver.saveAsCsv(s"$gisJoin.csv", noaaDf)
+    saver.saveAsSortedCsv(s"$gisJoin.csv", noaaDf, "year_month_day", isAscending = true)
 
   }
 }
