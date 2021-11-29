@@ -11,7 +11,7 @@ class NoaaProcessing(sparkSession: SparkSession) {
 
   def processNoaaData(gisJoin: String): Unit = {
     import sparkSession.sqlContext.implicits._
-    println(s"Processing for GISJoin: $gisJoin")
+    println(s"Processing GISJoin: $gisJoin")
     val readConfig: ReadConfig = ReadConfig(Map("collection"-> "noaa_nam"),
       Some(ReadConfig(sparkSession)))
     val noaaDf: DataFrame = MongoSpark.load(sparkSession, readConfig)
@@ -33,10 +33,17 @@ class NoaaProcessing(sparkSession: SparkSession) {
         "RELATIVE_HUMIDITY_2_METERS_ABOVE_SURFACE_PERCENT"
     )
 
-    noaaDf.show(5)
-    println(s"#rows = ${noaaDf.count()}")
+    //noaaDf.show(5)
+    //println(s"#rows = ${noaaDf.count()}")
 
-    val saver: DataFrameSaver = new DataFrameSaver(".")
+    // val saver: DataFrameSaver =
+    //   new DataFrameSaver("/s/parsons/b/others/sustain/menukaw/climate-analytics/spark_output/colorado")
+
+    val saver: DataFrameSaver =
+      new DataFrameSaver("hdfs://lattice-126:30000/user/menukaw/cs555")
+
+    println(s"Writing output: $gisJoin")
+    saver.saveAsCsv(s"$gisJoin.csv", noaaDf)
 
   }
 }
