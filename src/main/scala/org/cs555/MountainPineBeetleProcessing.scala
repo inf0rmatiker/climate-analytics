@@ -11,8 +11,11 @@ class MountainPineBeetleProcessing(sparkSession: SparkSession) {
     val readConfig: ReadConfig = ReadConfig(Map("collection" -> "mpb_cypress_hill_sk_100m"), Some(ReadConfig(sparkSession)))
     val mpbDf: DataFrame = MongoSpark.load(sparkSession, readConfig)
 
-    val mpbPerYearDf: DataFrame = mpbDf.groupBy("YEAR").sum("MPB").sort("YEAR")
+    val mpbPerYearDf: DataFrame = mpbDf.groupBy("YEAR").sum("MPB")
+      .withColumnRenamed("YEAR", "year")
+      .withColumnRenamed("sum(MPB)", "sum_of_mpb_infestations")
 
-    mpbPerYearDf.show(13)
+    val saver: DataFrameSaver = new DataFrameSaver("/s/chopin/b/grad/cacaleb/Jetbrains/IntelliJ/climate-analytics/output_dir")
+    saver.saveAsSortedCsv("cypress_hill_mpb.csv", mpbPerYearDf, "year", isAscending = true)
   }
 }
