@@ -32,7 +32,9 @@ class ClimateProcessing(sparkSession: SparkSession) {
       }
 
       (timestamp, totalSnowDbl)
-    }).toDF("timestamp", "total_snow_cm").sort("timestamp")
-    mappedDatesDf.show(100)
+    }).toDF("timestamp", "total_snow_cm")
+
+    val saver: DataFrameSaver = new DataFrameSaver("/s/chopin/b/grad/cacaleb/Jetbrains/IntelliJ/climate-analytics/output_dir")
+    saver.saveAsSortedCsv("cypress_hill_sk_snow.csv", mappedDatesDf, "timestamp", isAscending = true)
   }
 }
