@@ -22,17 +22,21 @@ object Application {
   }
 
   def main(args: Array[String]): Unit = {
+    val sparkMaster = "spark://lattice-100:8079"
+
     val sparkSession: SparkSession = SparkSession.builder
-      .appName("Simple Application")
-      .master("local[8]")
+      .appName("Climate Analysis")
+      .master(sparkMaster)
       .config("spark.mongodb.input.uri", "mongodb://lattice-100:27018/sustaindb.climate_cypress_hill_sk")
       .getOrCreate()
 
     val climateProcessing: ClimateProcessing = new ClimateProcessing(sparkSession)
     val mpbProcessing: MountainPineBeetleProcessing = new MountainPineBeetleProcessing(sparkSession)
+    val noaaProcessing: NoaaProcessing = new NoaaProcessing(sparkSession)
 
-    climateProcessing.processClimateData()
-    mpbProcessing.processMpbData()
+    // climateProcessing.processClimateData()
+    // mpbProcessing.processMpbData()
+    noaaProcessing.processNoaaData()
 
     sparkSession.close()
   }
