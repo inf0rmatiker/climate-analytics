@@ -4,6 +4,7 @@ import com.mongodb.spark.MongoSpark
 import com.mongodb.spark.config.ReadConfig
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
+import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -21,7 +22,16 @@ class ClimateProcessing(sparkSession: SparkSession) {
       val simpleDateFormat: SimpleDateFormat = new SimpleDateFormat(dateFormat)
       val parsedDate: Date = simpleDateFormat.parse(row.getString(0))
       val timestamp: Long = parsedDate.getTime
-      (timestamp, row.getInt(1))
+
+      val totalSnowStr: String = row.getString(1)
+      var totalSnowDbl: Double = 0.0
+      try {
+        totalSnowDbl = totalSnowStr.toDouble
+      } catch {
+        case e: NumberFormatException => println(s"Failed to parse '$totalSnowStr' to a Double, using 0.0 as default")
+      }
+
+      (timestamp, totalSnowDbl)
     }).toDF("timestamp", "total_snow_cm").sort("timestamp")
     mappedDatesDf.show(100)
   }
