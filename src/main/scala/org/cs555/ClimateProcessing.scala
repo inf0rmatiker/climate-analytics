@@ -15,6 +15,7 @@ class ClimateProcessing(sparkSession: SparkSession) {
 
     import sparkSession.implicits._
     val filteredDf: DataFrame = climateDf.select("YEAR_MONTH_DAY", "TOTAL_SNOW_CM")
+    filteredDf.printSchema()
     val mappedDatesDf = filteredDf.map(row => {
       val dateFormat: String = "yyyy-MM-dd"
       val simpleDateFormat: SimpleDateFormat = new SimpleDateFormat(dateFormat)
