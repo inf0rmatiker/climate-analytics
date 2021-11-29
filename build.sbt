@@ -7,7 +7,7 @@ scalaVersion := "2.12.12"
 // set the main class for 'sbt run'
 Compile / run / mainClass := Some("org.cs555.Application")
 
-val sparkVersion = "3.0.1"
+val sparkVersion = "3.1.2"
 val mongoSparkConnectorVersion = "3.0.1"
 
 libraryDependencies ++= Seq(
