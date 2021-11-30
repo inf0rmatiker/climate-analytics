@@ -1,4 +1,4 @@
-date,min_temperature,max_temperature,precipitation,snowfall
+date,max_temperature,min_temperature,precipitation,snowfall
 2020-01-01,28,4,0,0
 2020-01-02,28,13,0.26,3.0
 2020-01-03,23,12,0,0
