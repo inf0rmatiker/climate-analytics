@@ -1,0 +1,4 @@
+csu-weather-data filter=lfs diff=lfs merge=lfs -text
+nfs_r2_survey filter=lfs diff=lfs merge=lfs -text
+acres_affected_all_wbb.csv filter=lfs diff=lfs merge=lfs -text
+acres_affected_mpb.csv filter=lfs diff=lfs merge=lfs -text
